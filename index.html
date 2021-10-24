@@ -9,6 +9,17 @@
 		<meta name="description" content="Portfólio e agregador de links importantes, redes sociais e meios de contato do Engenheiro Civil Thiago Dias.">
 		<meta name="keywords" content="Engenheiro Civil, Engenharia, Thiago Dias, Thiago, Engenheiro">
 		<style type="text/css">
+
+			body {
+				height:100%;
+				background-color: #213357;
+			}
+
+			.geral {
+  				min-height:100%;
+ 				position:relative;
+			}
+
 			/*Configurações Padrões*/
 			ul.menu, .menu li, .menu a{
 			margin:0;
@@ -165,14 +176,17 @@
 			.page-footer {
 				background-color: rgb(137, 117, 118);
 				color: #dfd0d3;
+				position:absolute;
+    			bottom:0;
+    			width:100%;
 			}
 		</style>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	</head>
-	<body>
-		<div align="center">
-			<table with="50%" bgcolor="#213357">
+	<body bgcolor="#213357">
+		<div align="center" class="geral">
+			<table bgcolor="#213357">
 				<tr>
 					<td width="250px">
 						<div align="center">
@@ -268,10 +282,11 @@
 					<td></td>
 				</tr>
 			</table>
-		</div>
-		<a href="#" class="btn"></a>
+			<a href="#" class="btn"></a>
 
-		<!-- Versionamento: Modelo do site - #pull - #commits -->
-		<footer class="page-footer"><div align="center">Versão 0.12.19</div></footer>
+			<!-- Versionamento: Modelo do site - #pull - #commits -->
+			<footer class="page-footer"><div align="center">Versão 0.13.20</div></footer>
+		</div>
+
 	</body>
 </html>
