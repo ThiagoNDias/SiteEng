@@ -16,6 +16,7 @@
             --accent-orange: #fd951f;
             --gradient-hero: linear-gradient(135deg, #8257e5 0%, #fd951f 100%);
             --border-color: #323238;
+            --grid-color: rgba(255, 255, 255, 0.05); /* Cor da grade no escuro */
         }
 
         /* Modo Light */
@@ -25,10 +26,11 @@
             --text-primary: #121214;
             --text-secondary: #737380;
             --border-color: #e1e1e6;
+            --grid-color: rgba(0, 0, 0, 0.05); /* Cor da grade no claro */
         }
 
         html {
-            scroll-behavior: smooth; /* Rolagem suave nativa */
+            scroll-behavior: smooth;
         }
 
         * {
@@ -52,11 +54,29 @@
             padding: 0 20px;
         }
 
-        /* Header / Hero Section */
+        /* --- HEADER TECNOLÓGICO --- */
         header {
             padding: 80px 0 60px 0;
             text-align: center;
             position: relative;
+            /* Adiciona o Grid Tecnológico no fundo */
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px; /* Tamanho dos quadradinhos */
+            background-position: center top;
+        }
+        
+        /* Fade para suavizar o grid nas bordas */
+        header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--bg-body), transparent);
+            pointer-events: none;
         }
 
         /* Botão de tema fixo */
@@ -97,12 +117,12 @@
             font-size: 1.2rem;
             cursor: pointer;
             z-index: 1000;
-            display: none; /* Começa invisível */
+            display: none;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 15px rgba(130, 87, 229, 0.4);
             transition: transform 0.3s, opacity 0.3s;
-            opacity: 0; /* Para animação de fade */
+            opacity: 0;
         }
 
         .back-to-top:hover {
@@ -114,9 +134,11 @@
             opacity: 1;
         }
         
-        /* Foto de Perfil */
+        /* Foto de Perfil com brilho sutil */
         .profile-image-container {
             margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
         }
         .profile-image {
             width: 150px;
@@ -128,36 +150,77 @@
             background-origin: border-box;
             background-clip: content-box, border-box;
             padding: 2px;
+            position: relative;
+            z-index: 2;
+        }
+        /* Efeito de brilho atrás da foto */
+        .profile-image-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            filter: blur(25px);
+            opacity: 0.2; /* Brilho suave */
+            z-index: 1;
         }
 
         .profile-title h1 {
             font-size: 1.8rem;
             margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
         }
 
         .profile-title h2 {
             font-size: 1.0rem;
             color: var(--accent-orange);
             font-weight: 500;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
         }
 
-        .tagline {
+/* --- EFEITO DE DIGITAÇÃO AJUSTADO --- */
+        .typing-container {
             font-size: 1.1rem;
             color: var(--text-secondary);
-            font-style: italic;
-            max-width: 600px;
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 1.6em;
+            display: inline-block; /* Mudança para comportar texto longo */
+            max-width: 800px; /* Limita largura para não esticar demais */
             margin: 0 auto;
-            border-left: 3px solid var(--accent-purple);
-            padding-left: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight-text {
+            color: var(--accent-purple); /* Mantém a cor roxa */
+            font-weight: bold;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: var(--accent-orange);
+            animation: blink 1s infinite;
+            vertical-align: bottom; /* Alinha com o texto */
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         /* Seções Gerais */
-        section {
-            padding: 40px 0;
-        }
+        section { padding: 40px 0; }
 
         .section-title {
             font-size: 1.8rem;
@@ -224,9 +287,7 @@
         }
 
         /* Experiência */
-        .timeline {
-            position: relative;
-        }
+        .timeline { position: relative; }
         .timeline-item {
             background: var(--bg-card);
             margin-bottom: 20px;
@@ -295,9 +356,7 @@
             background: var(--accent-purple);
             color: #fff;
         }
-        .social-btn i {
-            font-size: 1.2rem;
-        }
+        .social-btn i { font-size: 1.2rem; }
 
         /* --- MOBILE --- */
         @media (max-width: 600px) {
@@ -317,7 +376,6 @@
                 height: 55px;
             }
 
-            /* Ajuste dos botões fixos para não cobrirem conteúdo em telas pequenas */
             .theme-switch {
                 top: 15px;
                 right: 15px;
@@ -354,15 +412,9 @@
                 <h2>Líder Técnico de Sustentação de Sistemas</h2>
             </div>
             
-            <p class="tagline">
-                Guiado por dados.
-			</p>
-			<p class="tagline">
-				Impulsionado pela tecnologia.
-			</p>
-			<p class="tagline">
-				Transformado por pessoas.
-            </p>
+            <div class="typing-container">
+                <span id="typewriter-text"></span><span class="cursor"></span>
+            </div>
         </header>
 
         <section id="sobre">
@@ -490,9 +542,7 @@
 
         // Lógica do Botão Voltar ao Topo
         const backToTopBtn = document.getElementById('backToTop');
-
         window.onscroll = function() {
-            // Mostra o botão se descer mais que 300 pixels
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 backToTopBtn.classList.add('show');
             } else {
@@ -503,9 +553,43 @@
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Sobe suavemente
+                behavior: 'smooth'
             });
         }
+
+        // --- LÓGICA DO TYPEWRITER (DIGITAÇÃO ÚNICA COM PAUSA) ---
+        const textElement = document.getElementById('typewriter-text');
+        
+        // A frase completa que será digitada
+        const fullText = "Guiado por dados. Impulsionado pela tecnologia. Transformado por pessoas.";
+        
+        let charIndex = 0;
+        const typeSpeed = 80; // Velocidade padrão da digitação
+
+        function type() {
+            if (charIndex < fullText.length) {
+                // Pega o caractere atual
+                const currentChar = fullText.charAt(charIndex);
+                
+                // Adiciona o caractere ao HTML
+                textElement.innerHTML += `<span class="highlight-text">${currentChar}</span>`;
+                charIndex++;
+
+                // Define a velocidade da próxima repetição
+                let nextDelay = typeSpeed;
+
+                // Se o caractere atual for um ponto, pausa por 1 segundo (1000ms)
+                if (currentChar === '.') {
+                    nextDelay = 1000;
+                }
+
+                setTimeout(type, nextDelay);
+            }
+            // Se acabou, para aqui e o cursor continua piscando via CSS
+        }
+
+        // Inicia o efeito quando a página carrega
+        document.addEventListener('DOMContentLoaded', type);
     </script>
 </body>
 </html>
