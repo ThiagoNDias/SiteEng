@@ -27,6 +27,10 @@
             --border-color: #e1e1e6;
         }
 
+        html {
+            scroll-behavior: smooth; /* Rolagem suave nativa */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -50,16 +54,17 @@
 
         /* Header / Hero Section */
         header {
-            padding: 60px 0;
+            padding: 80px 0 60px 0;
             text-align: center;
             position: relative;
         }
 
-        /* Botão de Tema */
+        /* Botão de tema fixo */
         .theme-switch {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
+            z-index: 1000;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
@@ -70,10 +75,43 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .theme-switch:hover {
             border-color: var(--accent-purple);
+            transform: translateY(2px);
+        }
+        
+        /* Botão voltar ao topo */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-hero);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            display: none; /* Começa invisível */
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(130, 87, 229, 0.4);
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0; /* Para animação de fade */
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+            opacity: 1;
         }
         
         /* Foto de Perfil */
@@ -92,7 +130,6 @@
             padding: 2px;
         }
 
-        /* Títulos reduzidos conforme pedido anterior */
         .profile-title h1 {
             font-size: 1.8rem;
             margin-bottom: 10px;
@@ -262,15 +299,14 @@
             font-size: 1.2rem;
         }
 
-        /* --- MOBILE (CELULAR) --- */
+        /* --- MOBILE --- */
         @media (max-width: 600px) {
             .profile-title h1 { font-size: 1.5rem; } 
             
-            /* Ajuste para centralizar no mobile */
             .timeline-item { 
                 flex-direction: column; 
-                align-items: center; /* Centraliza horizontalmente */
-                text-align: center;  /* Centraliza o texto */
+                align-items: center;
+                text-align: center;
                 padding: 20px;
             }
             
@@ -280,17 +316,35 @@
                 width: 120px;
                 height: 55px;
             }
+
+            /* Ajuste dos botões fixos para não cobrirem conteúdo em telas pequenas */
+            .theme-switch {
+                top: 15px;
+                right: 15px;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <button class="theme-switch" onclick="toggleTheme()">
+        <i class="fas fa-adjust"></i>
+    </button>
+
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <div class="container">
         <header>
-            <button class="theme-switch" onclick="toggleTheme()">
-                <i class="fas fa-adjust"></i>
-            </button>
-            
             <div class="profile-image-container">
                 <img src="image_0.jpg" alt="Foto de Thiago Felipe" class="profile-image">
             </div>
@@ -416,6 +470,7 @@
     </div>
 
     <script>
+        // Lógica do Tema Light/Dark
         function toggleTheme() {
             const body = document.body;
             const currentTheme = body.getAttribute('data-theme');
@@ -425,6 +480,25 @@
             } else {
                 body.setAttribute('data-theme', 'light');
             }
+        }
+
+        // Lógica do Botão Voltar ao Topo
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.onscroll = function() {
+            // Mostra o botão se descer mais que 300 pixels
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Sobe suavemente
+            });
         }
     </script>
 </body>
