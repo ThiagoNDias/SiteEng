@@ -1,122 +1,384 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engenheiro Thiago Dias - Engenharia Civil</title>
-  <meta name="author" content="Thiago Dias">
-  <meta name="creator" content="Thiago Dias">
-  <meta name="copyright" content="Criado por Thiago Dias">
-  <meta name="description" content="Portfólio e agregador de links importantes, redes sociais e meios de contato do Engenheiro Civil Thiago Dias.">
-  <meta name="keywords" content="engenharia civil, projetos estruturais, projetos arquitetônicos, compatibilização de projetos, construção civil, engenharia sustentável, projeto de casas, projeto estrutural, projeto arquitetônico, engenharia Thiago Dias, engenheiro civil">
-  <link rel="icon" href="civ.ico" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --cor-primaria: #FF6F00;
-      --cor-secundaria: #6A0DAD;
-      --cor-clara: #FFB74D;
-      --cor-escura: #E65100;
-      --cor-neutra: #F0F0F0;
-      --cor-texto: #333333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Thiago Felipe do Nascimento Dias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Variáveis de Cores - Modo Dark (Padrão solicitado como base) */
+            --bg-body: #121214;
+            --bg-card: #202024;
+            --text-primary: #e1e1e6;
+            --text-secondary: #a8a8b3;
+            --accent-purple: #8257e5;
+            --accent-orange: #fd951f;
+            --gradient-hero: linear-gradient(135deg, #8257e5 0%, #fd951f 100%);
+            --border-color: #323238;
+        }
 
-    body {
-      font-family: 'Rajdhani', sans-serif;
-      scroll-behavior: smooth;
-      user-select: none;
-      background-color: var(--cor-primaria);
-    }
+        /* Variáveis - Modo Light */
+        [data-theme="light"] {
+            --bg-body: #f0f2f5;
+            --bg-card: #ffffff;
+            --text-primary: #121214;
+            --text-secondary: #737380;
+            --border-color: #e1e1e6;
+        }
 
-    .navbar {
-      background-color: var(--cor-escura);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    .navbar-brand {
-      color: var(--cor-neutra) !important;
-    }
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
 
-    .navbar-brand:hover {
-      color: var(--cor-secundaria) !important;
-    }
+        /* Container Central */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .hero {
-      color: var(--cor-neutra);
-      text-align: center;
-    }
+        /* Header / Hero Section */
+        header {
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+        }
 
-    .hero-img {
-      max-width: 200px;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto;
-    }
+        /* Botão de Tema */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .theme-switch:hover {
+            border-color: var(--accent-purple);
+        }
+        
+        /* Foto de Perfil */
+        .profile-image-container {
+            margin-bottom: 20px;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background-image: linear-gradient(var(--bg-body), var(--bg-body)), var(--gradient-hero);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            padding: 2px; /* Espaço entre a borda e a imagem */
+        }
 
-    .hero-content {
-      padding: 20px;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-      animation: fadeInDown 1s ease-in-out;
-    }
+        .profile-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
 
-    footer {
-      background-color: var(--cor-escura);
-    }
+        .profile-title h2 {
+            font-size: 1.2rem;
+            color: var(--accent-orange);
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    .social-icons a {
-      color: var(--cor-neutra);
-      margin: 0 5px;
-      font-size: 1.5rem;
-      transition: transform 0.3s;
-    }
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 15px;
+        }
 
-    .social-icons a:hover {
-      transform: scale(1.2);
-      color: var(--cor-secundaria);
-    }
+        /* Seções Gerais */
+        section {
+            padding: 40px 0;
+        }
 
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 4px;
+            background: var(--gradient-hero);
+            margin-top: 5px;
+            border-radius: 2px;
+        }
+
+        /* Sobre Mim */
+        .about-content {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 3px solid var(--accent-purple);
+            transition: transform 0.2s;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--accent-orange);
+        }
+        .skill-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tag {
+            font-size: 0.85rem;
+            background: rgba(130, 87, 229, 0.1); /* Roxo transparente */
+            color: var(--accent-purple);
+            padding: 5px 12px;
+            border-radius: 4px;
+        }
+        [data-theme="light"] .tag {
+            background: rgba(130, 87, 229, 0.15);
+            font-weight: 600;
+        }
+
+        /* Experiência */
+        .timeline {
+            position: relative;
+        }
+        .timeline-item {
+            background: var(--bg-card);
+            margin-bottom: 20px;
+            padding: 20px 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-orange);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .timeline-role {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .timeline-company {
+            color: var(--accent-purple);
+        }
+
+        /* Contato / Footer */
+        footer {
+            margin-top: 60px;
+            padding: 40px 0;
+            background: var(--bg-card);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .social-btn:hover {
+            border-color: var(--accent-purple);
+            background: var(--accent-purple);
+            color: #fff;
+        }
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .profile-title h1 { font-size: 1.8rem; }
+            .timeline-item { flex-direction: column; align-items: flex-start; gap: 5px; }
+        }
+    </style>
 </head>
-
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg sticky-top">
+
     <div class="container">
-      <a class="navbar-brand" href="#">Engenheiro Thiago Dias</a>
-    </div>
-  </nav>
+        <header>
+            <button class="theme-switch" onclick="toggleTheme()">
+                <i class="fas fa-adjust"></i> Alternar Tema
+            </button>
+            
+            <div class="profile-image-container">
+                <img src="image_0.jpg" alt="Foto de Thiago Felipe do Nascimento Dias" class="profile-image">
+            </div>
+            
+            <div class="profile-title">
+                <h1>Thiago Felipe do Nascimento Dias</h1>
+                <h2>Líder Técnico de Sustentação de Sistemas</h2>
+            </div>
+            
+            <p class="tagline">
+                "Transformando dados em eficiência e garantindo a estabilidade de sistemas críticos com liderança técnica."
+            </p>
+        </header>
 
-  <!-- Hero -->
-  <section class="hero text-center">
-    <br>
-    <img src="banner.png" alt="Banner" class="hero-img" />
-    <div class="hero-content">
-      <h1 class="display-4">Site em construção</h1>
-    </div>
-  </section>
+        <section id="sobre">
+            <h3 class="section-title">Sobre Mim</h3>
+            <div class="about-content">
+                <p>Sou um profissional com sólida experiência em Tecnologia da Informação, atuando nas áreas de análise de dados, suporte técnico e desenvolvimento orientado a banco de dados. Apaixonado por lógica e dados, gosto de resolver problemas complexos e transformar informações em soluções práticas e eficientes.</p>
+                <br>
+                <p>Atualmente, atuo como Analista de Suporte Sênior na SYSMAP, focado em melhoria contínua e análise de sistemas com Oracle. Sou graduado em Engenharia Civil e estou cursando Ciência de Dados, consolidando minha transição definitiva para a área de tecnologia.</p>
+                <br>
+                <p>Sou movido por desafios, colaboração e propósito.</p>
+            </div>
+        </section>
 
-  <!-- Footer -->
-  <footer class="text-white text-center py-4">
-    <div class="container">
-      <p class="mb-2">&copy; 2025 Engenheiro Thiago Dias. Todos os direitos reservados.</p>
-      <div class="social-icons">
-        <a href="https://api.whatsapp.com/send?phone=5511985617591" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://instagram.com/ThiagoDias.eng" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/thiagodiaseng/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:ec.thiagodias@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.facebook.com/ThiagoDias.eng/" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://twitter.com/ThiagoDiaseng" target="_blank"><i class="fab fa-x-twitter"></i></a>
-      </div>
-    </div>
-  </footer>
+        <section id="skills">
+            <h3 class="section-title">Habilidades</h3>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3><i class="fas fa-code"></i> Técnicas</h3>
+                    <div class="tags">
+                        <span class="tag">Análise de Dados</span>
+                        <span class="tag">Análise de Sistemas</span>
+                        <span class="tag">Suporte Técnico</span>
+                        <span class="tag">Raciocínio Lógico</span>
+                        <span class="tag">Unix / Linux Server</span>
+                        <span class="tag">SAP MM e ERP</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3><i class="fas fa-tools"></i> Ferramentas</h3>
+                    <div class="tags">
+                        <span class="tag">Oracle SQL</span>
+                        <span class="tag">Putty</span>
+                        <span class="tag">Jira Service Desk</span>
+                        <span class="tag">Notepad++</span>
+                        <span class="tag">Microsoft Office</span>
+                    </div>
+                </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                <div class="skill-card">
+                    <h3><i class="fas fa-language"></i> Idiomas</h3>
+                    <div class="tags">
+                        <span class="tag">Português (Nativo)</span>
+                        <span class="tag">Inglês (Intermediário)</span>
+                        <span class="tag">Espanhol (Básico)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experiencia">
+            <h3 class="section-title">Trajetória Profissional</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-role">Analista de Suporte Sênior</span>
+                    <span class="timeline-company">SYSMAP</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-role">Analista de Suporte Técnico</span>
+                    <span class="timeline-company">Hitss do Brasil</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-role">Estagiário em Análise e Desenv. de Sistemas</span>
+                    <span class="timeline-company">TI Lab</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-role">Agente de Suporte Técnico (N1 a N4)</span>
+                    <span class="timeline-company">Concentrix</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h3 style="margin-bottom: 20px;">Vamos conversar?</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Estou disponível para novos desafios e conexões.</p>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/thiagodiaseng/" target="_blank" class="social-btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=5511985617591" target="_blank" class="social-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="mailto:ec.thiagodias@gmail.com" class="social-btn">
+                    <i class="fas fa-envelope"></i> E-mail
+                </a>
+                <a href="https://instagram.com/ti.codi.as" target="_blank" class="social-btn">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/ThiagoDias.eng/" target="_blank" class="social-btn">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+            </div>
+            
+            <br><br>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">© 2025 Thiago Felipe do Nascimento Dias.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'light');
+            }
+        }
+    </script>
 </body>
 </html>
